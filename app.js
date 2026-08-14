@@ -13,6 +13,7 @@
     library: [],
     notes: [],
     memories: [],
+    family: [],
     selectedDay: 0
   });
 
@@ -29,6 +30,22 @@
     return `${year}-${month}-${day}`;
   };
   const todayKey = () => dateKey();
+  const daysSince = (value) => {
+    if (!value) return null;
+    const date = new Date(`${String(value).slice(0, 10)}T00:00:00`);
+    const today = new Date(`${todayKey()}T00:00:00`);
+    if (Number.isNaN(date.getTime())) return null;
+    return Math.max(0, Math.floor((today - date) / 86400000));
+  };
+  const familyElapsed = (person) => {
+    const days = daysSince(person.lastContact);
+    if (days === null) return "لم يتم التواصل بعد";
+    if (days === 0) return "تم التواصل اليوم";
+    if (days === 1) return "منذ يوم واحد";
+    if (days === 2) return "منذ يومين";
+    if (days <= 10) return `منذ ${days} أيام`;
+    return `منذ ${days} يومًا`;
+  };
   const localDateTime = () => {
     const now = new Date();
     const hour = String(now.getHours()).padStart(2, "0");
@@ -59,7 +76,8 @@
       reminders: Array.isArray(source.reminders) ? source.reminders : [],
       library: Array.isArray(source.library) ? source.library : [],
       notes: Array.isArray(source.notes) ? source.notes : [],
-      memories: Array.isArray(source.memories) ? source.memories : []
+      memories: Array.isArray(source.memories) ? source.memories : [],
+      family: Array.isArray(source.family) ? source.family : []
     };
   }
 
@@ -103,7 +121,7 @@
     return Boolean(
       state.goals.length || state.tasks.length || state.reminders.length || state.library.length ||
       state.notes.length || state.memories.length || state.finance.expenses.length ||
-      state.finance.dailyBudget || state.finance.monthBudget || state.quran.todayTarget
+      state.finance.dailyBudget || state.finance.monthBudget || state.quran.todayTarget || state.family.length
     );
   }
 
@@ -211,6 +229,7 @@
             <button class="space-card" type="button" data-module="finance"><span class="space-icon">ر.س</span><span><strong>الميزانية</strong><small>${state.finance.expenses.length ? `${money(totals.month)} ر.س هذا الشهر` : "فارغة"}</small></span><span class="space-arrow">‹</span></button>
             <button class="space-card" type="button" data-module="memories"><span class="space-icon" style="--icon-bg:var(--rose-soft);--icon-color:var(--rose)">◫</span><span><strong>الذكريات</strong><small>${state.memories.length ? `${state.memories.length} محفوظة` : "فارغة"}</small></span><span class="space-arrow">‹</span></button>
             <button class="space-card" type="button" data-module="growth"><span class="space-icon" style="--icon-bg:var(--violet-soft);--icon-color:var(--violet)">↗</span><span><strong>تطويري</strong><small>${state.library.length ? `${state.library.length} مواد` : "فارغ"}</small></span><span class="space-arrow">‹</span></button>
+            <button class="space-card" type="button" data-module="family"><span class="space-icon" style="--icon-bg:var(--accent-soft);--icon-color:var(--accent-strong)">♡</span><span><strong>صلة الرحم</strong><small>${state.family.length ? `${state.family.length} أشخاص` : "فارغة"}</small></span><span class="space-arrow">‹</span></button>
           </div>
           <button class="more-card" type="button" data-action="open-more"><span>☰</span><span>عرض كل الأقسام</span></button>
         </section>
@@ -314,6 +333,11 @@
     sheetRoot.innerHTML = sheetFrame("إعداد الورد", "لن يظهر شيء حتى تدخله أنت", `<form class="form" id="quranForm"><div class="field"><label for="quranTarget">عدد صفحات اليوم</label><input id="quranTarget" name="target" type="number" min="1" max="604" inputmode="numeric" required value="${esc(state.quran.todayTarget || "")}"></div><div class="field"><label for="quranCurrent">السورة الحالية <span>اختياري</span></label><input id="quranCurrent" name="current" maxlength="80" value="${esc(state.quran.current)}"></div><div class="field"><label for="quranPage">رقم الصفحة الحالية <span>اختياري</span></label><input id="quranPage" name="nextPage" type="number" min="1" max="604" inputmode="numeric" value="${esc(state.quran.nextPage)}"></div><div class="field"><label for="quranReminder">وقت التذكير <span>اختياري</span></label><input id="quranReminder" name="reminder" type="time" dir="ltr" value="${esc(state.quran.reminder)}"></div><div class="form-actions"><button class="primary-button" type="submit">حفظ</button><button class="ghost-button" type="button" data-action="close-sheet">إلغاء</button></div></form>`);
   }
 
+  function openFamilyComposer() {
+    sheetRoot.innerHTML = sheetFrame("إضافة شخص", "قائمة صلة الرحم", `<form class="form" id="familyForm"><div class="field"><label for="familyName">اسم الشخص</label><input id="familyName" name="name" required maxlength="80" placeholder="مثال: أمي أو خالي" autocomplete="off"></div><div class="field"><label for="familyLastContact">آخر تواصل <span>اختياري</span></label><input id="familyLastContact" name="lastContact" type="date" dir="ltr" max="${todayKey()}"></div><div class="field"><label for="familyNotes">ملاحظة <span>اختياري</span></label><textarea id="familyNotes" name="notes" maxlength="240" placeholder="وقت مناسب للتواصل أو ملاحظة قصيرة"></textarea></div><p class="family-form-help">بعد الإضافة اضغط على اسم الشخص كلما تواصلت معه ليبدأ العداد من جديد.</p><div class="form-actions"><button class="primary-button" type="submit">إضافة للقائمة</button><button class="ghost-button" type="button" data-action="close-sheet">إلغاء</button></div></form>`);
+    setTimeout(() => document.getElementById("familyName")?.focus(), 80);
+  }
+
   function openFinanceSetup() {
     sheetRoot.innerHTML = sheetFrame("إعداد الميزانية", "اترك أي خانة لا تحتاجها", `<form class="form" id="budgetForm"><div class="field"><label for="dailyBudget">ميزانية اليوم (ر.س)</label><input id="dailyBudget" name="dailyBudget" type="number" min="0" step="0.01" inputmode="decimal" value="${esc(state.finance.dailyBudget || "")}"></div><div class="field"><label for="monthBudget">ميزانية الشهر (ر.س)</label><input id="monthBudget" name="monthBudget" type="number" min="0" step="0.01" inputmode="decimal" value="${esc(state.finance.monthBudget || "")}"></div><div class="form-actions"><button class="primary-button" type="submit">حفظ</button><button class="ghost-button" type="button" data-action="close-sheet">إلغاء</button></div></form>`);
   }
@@ -333,6 +357,15 @@
     }
     if (module === "memories") return sheetFrame("الذكريات", "فارغة حتى تضيف", `${state.memories.length ? `<div class="detail-list">${state.memories.map((item) => `<div class="detail-row"><div><strong>${esc(item.title)}</strong><span>${esc(item.body || "")}</span></div><span class="detail-value">${esc(item.icon || "◫")}</span></div>`).join("")}</div>` : emptyBlock("لا توجد ذكريات محفوظة.", "compose-memory", "إضافة ذكرى")}<button class="ghost-button full-button" type="button" data-action="pick-files" data-target="memories">اختيار صورة أو فيديو</button>`);
     if (module === "notes") return sheetFrame("الملاحظات", "فارغة حتى تكتب", `${state.notes.length ? `<div class="note-grid">${state.notes.map((note) => `<article class="note" style="--note-bg:${esc(note.tone)}"><strong>${esc(note.title)}</strong><p>${esc(note.body || "")}</p></article>`).join("")}</div>` : emptyBlock("لا توجد ملاحظات.", "compose-note", "إضافة ملاحظة")}<button class="primary-button full-button" type="button" data-compose="note">ملاحظة جديدة</button>`);
+    if (module === "family") {
+      const people = state.family;
+      const rows = people.map((person) => {
+        const days = daysSince(person.lastContact);
+        const firstLetter = Array.from(String(person.name || "ش").trim())[0] || "ش";
+        return `<button class="family-person ${days !== null && days >= 30 ? "overdue" : ""}" type="button" data-action="family-contact" data-id="${esc(person.id)}" aria-label="تسجيل التواصل مع ${esc(person.name)}"><span class="family-avatar">${esc(firstLetter)}</span><span class="family-person-copy"><strong>${esc(person.name)}</strong><span>${familyElapsed(person)}</span>${person.notes ? `<small>${esc(person.notes)}</small>` : ""}</span><span class="family-counter"><strong>${days === null ? "—" : days}</strong><small>${days === null ? "ابدأ" : days === 0 ? "اليوم" : "يوم"}</small></span></button>`;
+      }).join("");
+      return sheetFrame("صلة الرحم", "قائمتك الخاصة", `${people.length ? `<article class="family-hero"><div><span class="tiny">أسماء أريد وصلها</span><div class="detail-big">${people.length} <small>أشخاص</small></div></div><span class="family-hero-icon">♡</span><p>اضغط على اسم الشخص بعد التواصل معه ليبدأ العداد من جديد.</p></article><div class="family-list">${rows}</div><button class="primary-button full-button" type="button" data-action="compose-family">إضافة شخص</button>` : emptyBlock("أضف الأشخاص الذين تريد وصلهم.", "compose-family", "إضافة أول شخص")}`);
+    }
     if (module === "tasks") return sheetFrame("المهام", "فارغة حتى تضيف", `<div class="task-list">${renderTasks()}</div><button class="primary-button full-button" type="button" data-compose="task">مهمة جديدة</button>`);
     if (module === "growth") return sheetFrame("تطويري", "موادك أنت فقط", `${state.library.length ? `<div class="detail-list">${state.library.map((item) => `<div class="detail-row"><div><strong>${esc(item.title)}</strong><span>${esc(typeLabels[item.type] || "مادة")}</span></div><span class="detail-value">${clamp(item.progress)}%</span></div>`).join("")}</div>` : emptyBlock("لا توجد كتب أو دورات أو مواد.", "compose-library", "إضافة مادة")}<button class="ghost-button full-button" type="button" data-route="library">فتح المكتبة</button>`);
     return sheetFrame("حياتك", "", `<div class="empty">هذه المساحة فارغة.</div>`);
@@ -341,7 +374,7 @@
   function openMore() {
     const modules = [
       ["tasks", "✓", "المهام", ""], ["notes", "✎", "الملاحظات", ""], ["memories", "◫", "الذكريات", ""],
-      ["quran", "۞", "الورد", ""], ["finance", "ر.س", "الميزانية", ""], ["growth", "↗", "تطويري", ""]
+      ["quran", "۞", "الورد", ""], ["finance", "ر.س", "الميزانية", ""], ["growth", "↗", "تطويري", ""], ["family", "♡", "صلة الرحم", ""]
     ];
     sheetRoot.innerHTML = sheetFrame("كل الأقسام", "بدون محتوى جاهز", `<div class="module-grid">${modules.map(([key, icon, label, hint]) => `<button class="module-button" type="button" data-module="${key}"><span class="module-icon">${icon}</span><strong>${label}</strong><span>${hint}</span></button>`).join("")}</div>`);
   }
@@ -388,7 +421,7 @@
       return;
     }
     if (target.dataset.module) { sheetRoot.innerHTML = moduleBody(target.dataset.module); return; }
-    if (target.dataset.compose) { openComposer(target.dataset.compose); return; }
+    if (target.dataset.compose) { target.dataset.compose === "family" ? openFamilyComposer() : openComposer(target.dataset.compose); return; }
     if (target.dataset.filter) { libraryFilter = target.dataset.filter; render(); return; }
     if (target.dataset.day !== undefined) { state.selectedDay = Number(target.dataset.day); save(); render(); return; }
     if (target.dataset.themeChoice) { applyTheme(target.dataset.themeChoice); return; }
@@ -409,6 +442,7 @@
     if (action === "compose-memory") openComposer("memory");
     if (action === "compose-note") openComposer("note");
     if (action === "compose-library") openComposer("library");
+    if (action === "compose-family") openFamilyComposer();
     if (action === "configure-quran") openQuranSetup();
     if (action === "configure-finance") openFinanceSetup();
     if (action === "toggle-task") {
@@ -428,6 +462,16 @@
     if (action === "library-progress") {
       const item = state.library.find((entry) => entry.id === target.dataset.id);
       if (item) { item.progress = clamp(item.progress + 5); item.detail = `${item.progress}%`; save(); render(); toast("سُجل التقدم"); }
+    }
+    if (action === "family-contact") {
+      const person = state.family.find((item) => item.id === target.dataset.id);
+      if (person) {
+        person.lastContact = todayKey();
+        save();
+        render();
+        sheetRoot.innerHTML = moduleBody("family");
+        toast(`تم تسجيل صلتك بـ ${person.name}`);
+      }
     }
     if (action === "clear-data") {
       if (!window.confirm("هل تريد تفريغ جميع محتويات التطبيق من هذا الجهاز؟")) return;
@@ -465,6 +509,19 @@
       state.finance.dailyBudget = Math.max(0, Number(data.get("dailyBudget")) || 0);
       state.finance.monthBudget = Math.max(0, Number(data.get("monthBudget")) || 0);
       save(); sheetRoot.innerHTML = moduleBody("finance"); render(); toast("تم حفظ الميزانية");
+    }
+    if (event.target.id === "familyForm") {
+      event.preventDefault();
+      const data = new FormData(event.target);
+      const name = String(data.get("name") || "").trim();
+      if (!name) return;
+      const enteredDate = String(data.get("lastContact") || "");
+      const lastContact = enteredDate && enteredDate <= todayKey() ? enteredDate : "";
+      state.family.unshift({ id: `family-${Date.now()}`, name, notes: String(data.get("notes") || "").trim(), lastContact });
+      save();
+      sheetRoot.innerHTML = moduleBody("family");
+      render();
+      toast("تمت إضافة الشخص");
     }
     if (event.target.id === "loginForm") {
       event.preventDefault();

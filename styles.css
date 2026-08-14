@@ -732,6 +732,145 @@ h3 {
   font-size: 14px;
 }
 
+.family-hero {
+  position: relative;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.family-hero p {
+  max-width: 275px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.7;
+}
+
+.family-hero-icon {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: grid;
+  place-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 16px 16px 16px 5px;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  font-size: 22px;
+}
+
+.family-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.family-person {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  color: var(--text);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  text-align: start;
+  transition: transform .18s ease, border-color .18s ease;
+}
+
+.family-person:active {
+  transform: scale(.985);
+}
+
+.family-person.overdue {
+  border-color: color-mix(in srgb, var(--rose) 42%, var(--line));
+}
+
+.family-avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 15px 15px 15px 5px;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.family-person-copy {
+  min-width: 0;
+}
+
+.family-person-copy strong,
+.family-person-copy span,
+.family-person-copy small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.family-person-copy strong {
+  font-size: 12px;
+}
+
+.family-person-copy span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.family-person-copy small {
+  margin-top: 3px;
+  color: var(--soft);
+  font-size: 8px;
+}
+
+.family-counter {
+  min-width: 45px;
+  padding: 7px 5px;
+  border-radius: 12px;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  text-align: center;
+}
+
+.family-counter strong,
+.family-counter small {
+  display: block;
+}
+
+.family-counter strong {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.family-counter small {
+  margin-top: 4px;
+  font-size: 8px;
+}
+
+.family-person.overdue .family-counter {
+  color: var(--rose);
+  background: var(--rose-soft);
+}
+
+.family-form-help {
+  margin: -4px 2px 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.7;
+}
+
 .more-card {
   display: flex;
   align-items: center;
