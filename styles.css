@@ -1423,6 +1423,14 @@ h3 {
   outline: none;
 }
 
+.field input[type="date"],
+.field input[type="time"],
+.field input[type="datetime-local"] {
+  direction: ltr;
+  text-align: right;
+  unicode-bidi: isolate;
+}
+
 .field input,
 .field select,
 .auth-form input {
