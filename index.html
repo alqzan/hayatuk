@@ -29,6 +29,7 @@
       document.documentElement.dataset.theme = saved || preferred;
     })();
   </script>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -75,7 +76,7 @@
 
       <form id="loginForm" class="auth-form">
         <label for="loginName">اسمك</label>
-        <input id="loginName" name="name" required maxlength="40" autocomplete="name" placeholder="مثال: عبدالرحمن">
+        <input id="loginName" name="name" required maxlength="40" autocomplete="name" placeholder="اكتب اسمك">
         <label for="loginEmail">البريد الإلكتروني <span>اختياري حاليًا</span></label>
         <input id="loginEmail" name="email" type="email" maxlength="100" autocomplete="email" inputmode="email" placeholder="name@example.com" dir="ltr">
         <button class="primary-button auth-submit" type="submit">ادخل إلى حياتك</button>

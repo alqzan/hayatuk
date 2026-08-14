@@ -342,6 +342,25 @@ h3 {
   line-height: 1.75;
 }
 
+.blank-primary {
+  margin-top: 16px;
+}
+
+.blank-orbit {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  border-radius: 50%;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  font-size: 28px;
+  font-weight: 500;
+}
+
 .day-stats {
   display: flex;
   flex-wrap: wrap;
@@ -1255,6 +1274,27 @@ h3 {
   line-height: 1.7;
 }
 
+.empty-state {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.empty-state p {
+  margin: 0;
+}
+
+.empty-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  font-size: 19px;
+}
+
 .sheet-root:empty {
   display: none;
 }
@@ -1803,6 +1843,7 @@ body.auth-open {
   .quick-action { min-height: 84px; }
   .day-card { grid-template-columns: 1fr; min-height: 0; }
   .day-ring { position: absolute; inset: 24px auto auto 21px; width: 84px; height: 84px; }
+  .blank-orbit { position: absolute; inset: 24px auto auto 21px; width: 72px; height: 72px; }
   .day-ring::before { width: 64px; height: 64px; }
   .day-copy { max-width: 72%; }
   .day-stats { width: 140%; }
