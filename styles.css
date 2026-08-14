@@ -163,40 +163,19 @@ textarea:focus-visible {
 }
 
 .brand-mark {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 27px;
-  height: 27px;
-  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
-  border-radius: 50%;
+  display: block;
+  width: 29px;
+  height: 29px;
+  border-radius: 10px 10px 10px 4px;
+  background: url("icon-v2.png") center / cover no-repeat;
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--accent) 22%, transparent);
+  transform: rotate(-5deg);
 }
 
 .brand-mark::before,
 .brand-mark::after,
 .brand-mark i {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-}
-
-.brand-mark::before {
-  width: 17px;
-  height: 17px;
-  border: 1px solid color-mix(in srgb, var(--accent) 72%, transparent);
-}
-
-.brand-mark::after {
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-}
-
-.brand-mark i {
-  width: 3px;
-  height: 3px;
-  transform: translate(9px, -8px);
-  background: var(--accent);
+  display: none;
 }
 
 .icon-button {
@@ -1732,37 +1711,20 @@ body.auth-open {
 }
 
 .auth-logo {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 70px;
-  height: 70px;
+  display: block;
+  width: 76px;
+  height: 76px;
   margin: 0 auto 16px;
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-  border-radius: 50%;
-  color: var(--accent-strong);
-  background: var(--accent-soft);
-  font-size: 26px;
-  font-weight: 850;
+  border: 0;
+  border-radius: 23px 23px 23px 8px;
+  background: url("icon-v2.png") center / cover no-repeat;
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--accent) 26%, transparent);
+  transform: rotate(-5deg);
 }
 
 .auth-logo::before,
 .auth-logo i {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-}
-
-.auth-logo::before {
-  inset: 7px;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-}
-
-.auth-logo i {
-  width: 7px;
-  height: 7px;
-  inset: 5px 7px auto auto;
-  background: var(--accent);
+  display: none;
 }
 
 .auth-kicker {
