@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>حياتك</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0b1020; --card: rgba(255,255,255,.08); --text: #f7f8ff; --muted: #aab3ca; --accent: #8b7cff; --accent2: #37d6c0; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif; color: var(--text); background: radial-gradient(circle at 15% 10%, #263067 0, transparent 35%), radial-gradient(circle at 90% 80%, #124b55 0, transparent 32%), var(--bg); }
+    main { width: min(1080px, calc(100% - 40px)); margin: auto; padding: 72px 0; }
+    .badge { display: inline-flex; gap: 8px; align-items: center; padding: 8px 14px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; color: #d8d4ff; background: rgba(255,255,255,.06); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 18px var(--accent2); }
+    h1 { margin: 28px 0 16px; font-size: clamp(48px, 9vw, 92px); line-height: .95; letter-spacing: -0.06em; }
+    h1 span { color: var(--accent2); }
+    .lead { max-width: 650px; margin: 0; color: var(--muted); font-size: clamp(19px, 3vw, 26px); line-height: 1.7; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 64px; }
+    .card { padding: 24px; min-height: 150px; border: 1px solid rgba(255,255,255,.1); border-radius: 24px; background: var(--card); backdrop-filter: blur(12px); }
+    .icon { font-size: 28px; }
+    h2 { margin: 16px 0 8px; font-size: 20px; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.7; }
+    footer { margin-top: 72px; color: #7f89a5; font-size: 14px; }
+    @media (max-width: 700px) { main { padding: 40px 0; } .grid { grid-template-columns: 1fr; margin-top: 40px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="badge"><span class="dot"></span> بداية مشروع حياتك</div>
+    <h1>أهلًا بك في <span>حياتك</span></h1>
+    <p class="lead">مساحة هادئة نبني فيها أدوات تساعدك ترتب يومك، تتابع تقدمك، وتعيش التفاصيل المهمة بطريقتك.</p>
+    <section class="grid" aria-label="مزايا المشروع">
+      <article class="card"><div class="icon">🧭</div><h2>وضوح أكثر</h2><p>رتب أفكارك وخطواتك في مكان واحد.</p></article>
+      <article class="card"><div class="icon">✨</div><h2>تقدم مستمر</h2><p>حوّل أهدافك الصغيرة إلى نتائج ملموسة.</p></article>
+      <article class="card"><div class="icon">🌱</div><h2>مصمم لك</h2><p>تجربة تتطور مع احتياجاتك وأسلوب حياتك.</p></article>
+    </section>
+    <footer>نسخة البداية · مشروع حياتك</footer>
+  </main>
+</body>
+</html>
