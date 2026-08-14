@@ -21,29 +21,29 @@
 
 :root {
   color-scheme: light;
-  --canvas: #eee8dc;
-  --bg: #f7f3eb;
-  --surface: #fffdf9;
-  --surface-2: #f2ede3;
-  --surface-3: #eae2d4;
-  --text: #292824;
-  --muted: #77736b;
-  --soft: #9b958b;
-  --line: rgba(72, 61, 43, .11);
-  --line-strong: rgba(72, 61, 43, .18);
-  --accent: #b88843;
-  --accent-strong: #91652d;
-  --accent-soft: #f4e8d1;
-  --green: #648774;
-  --green-soft: #e5eee8;
-  --blue: #667d91;
-  --blue-soft: #e7edf1;
-  --rose: #9a6e72;
-  --rose-soft: #f2e5e5;
-  --violet: #766f91;
-  --violet-soft: #ebe8f1;
-  --shadow: 0 18px 55px rgba(91, 75, 48, .10);
-  --shadow-soft: 0 8px 25px rgba(91, 75, 48, .07);
+  --canvas: #d9e5ea;
+  --bg: #edf3f6;
+  --surface: #ffffff;
+  --surface-2: #e5edf1;
+  --surface-3: #d7e3e9;
+  --text: #17242c;
+  --muted: #60717b;
+  --soft: #84949d;
+  --line: rgba(30, 65, 82, .11);
+  --line-strong: rgba(30, 65, 82, .19);
+  --accent: #2f7384;
+  --accent-strong: #1f5c6b;
+  --accent-soft: #d8ebef;
+  --green: #4f7f6f;
+  --green-soft: #dfede7;
+  --blue: #4f7897;
+  --blue-soft: #dfeaf1;
+  --rose: #956b78;
+  --rose-soft: #f0e3e7;
+  --violet: #6f6f96;
+  --violet-soft: #e8e7f1;
+  --shadow: 0 18px 55px rgba(35, 75, 94, .13);
+  --shadow-soft: 0 8px 25px rgba(35, 75, 94, .08);
   --radius-xl: 28px;
   --radius-lg: 22px;
   --radius-md: 16px;
@@ -51,29 +51,29 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --canvas: #101411;
-  --bg: #171c18;
-  --surface: #1e251f;
-  --surface-2: #252d27;
-  --surface-3: #303830;
-  --text: #f2ede3;
-  --muted: #aaa99f;
-  --soft: #858a82;
+  --canvas: #07111b;
+  --bg: #0d1924;
+  --surface: #142431;
+  --surface-2: #1b2d3a;
+  --surface-3: #293d4b;
+  --text: #eef5f7;
+  --muted: #a1b3bc;
+  --soft: #758a94;
   --line: rgba(255, 255, 255, .08);
   --line-strong: rgba(255, 255, 255, .14);
-  --accent: #d2aa6a;
-  --accent-strong: #edc889;
-  --accent-soft: #3a3021;
-  --green: #8eb19c;
-  --green-soft: #263a2e;
-  --blue: #96adbf;
-  --blue-soft: #293742;
-  --rose: #c89ba0;
-  --rose-soft: #3b2b2d;
-  --violet: #aaa2c5;
-  --violet-soft: #312f3d;
-  --shadow: 0 24px 70px rgba(0, 0, 0, .32);
-  --shadow-soft: 0 10px 28px rgba(0, 0, 0, .18);
+  --accent: #397c8c;
+  --accent-strong: #8ed2de;
+  --accent-soft: #173843;
+  --green: #8eb9a9;
+  --green-soft: #1d3a34;
+  --blue: #99bdd4;
+  --blue-soft: #203747;
+  --rose: #d1a1af;
+  --rose-soft: #3c2932;
+  --violet: #b0acd3;
+  --violet-soft: #302f49;
+  --shadow: 0 24px 70px rgba(0, 8, 15, .44);
+  --shadow-soft: 0 10px 28px rgba(0, 8, 15, .25);
 }
 
 * {
@@ -121,8 +121,8 @@ textarea:focus-visible {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 12% 6%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 29rem),
-    radial-gradient(circle at 94% 80%, color-mix(in srgb, var(--green) 8%, transparent), transparent 28rem);
+    radial-gradient(circle at 88% -8%, color-mix(in srgb, var(--blue) 19%, transparent), transparent 26rem),
+    linear-gradient(145deg, color-mix(in srgb, var(--accent) 7%, transparent), transparent 48%);
 }
 
 .app {
@@ -131,7 +131,7 @@ textarea:focus-visible {
   min-height: 100dvh;
   margin-inline: auto;
   overflow: hidden;
-  background: var(--bg);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--blue-soft) 66%, var(--bg)) 0, var(--bg) 250px);
   box-shadow: var(--shadow);
 }
 
