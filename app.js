@@ -120,7 +120,7 @@
     localStorage.setItem(THEME_KEY, selected);
     themeIcon.textContent = selected === "dark" ? "☼" : "☾";
     themeToggle.setAttribute("aria-label", selected === "dark" ? "تفعيل الوضع النهاري" : "تفعيل الوضع الليلي");
-    themeColor.setAttribute("content", selected === "dark" ? "#0d1924" : "#edf3f6");
+    themeColor.setAttribute("content", selected === "dark" ? "#171009" : "#f4eee2");
     document.querySelectorAll("[data-theme-choice]").forEach((button) => button.classList.toggle("active", button.dataset.themeChoice === selected));
   }
 

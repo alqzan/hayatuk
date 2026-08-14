@@ -21,29 +21,29 @@
 
 :root {
   color-scheme: light;
-  --canvas: #d9e5ea;
-  --bg: #edf3f6;
-  --surface: #ffffff;
-  --surface-2: #e5edf1;
-  --surface-3: #d7e3e9;
-  --text: #17242c;
-  --muted: #60717b;
-  --soft: #84949d;
-  --line: rgba(30, 65, 82, .11);
-  --line-strong: rgba(30, 65, 82, .19);
-  --accent: #2f7384;
-  --accent-strong: #1f5c6b;
-  --accent-soft: #d8ebef;
-  --green: #4f7f6f;
-  --green-soft: #dfede7;
-  --blue: #4f7897;
-  --blue-soft: #dfeaf1;
-  --rose: #956b78;
-  --rose-soft: #f0e3e7;
-  --violet: #6f6f96;
-  --violet-soft: #e8e7f1;
-  --shadow: 0 18px 55px rgba(35, 75, 94, .13);
-  --shadow-soft: 0 8px 25px rgba(35, 75, 94, .08);
+  --canvas: #e8e0d0;
+  --bg: #f4eee2;
+  --surface: #fbf7ee;
+  --surface-2: #f5eddc;
+  --surface-3: #eadfca;
+  --text: #241d16;
+  --muted: #6f6450;
+  --soft: #95866f;
+  --line: rgba(36, 29, 22, .12);
+  --line-strong: rgba(36, 29, 22, .2);
+  --accent: #b9862f;
+  --accent-strong: #8f6415;
+  --accent-soft: #f0e2c2;
+  --green: #1c6350;
+  --green-soft: #e1eee8;
+  --blue: #b9862f;
+  --blue-soft: #f0e2c2;
+  --rose: #c15a34;
+  --rose-soft: #f3dfd5;
+  --violet: #8a6fa6;
+  --violet-soft: #eee6f3;
+  --shadow: 0 18px 55px rgba(60, 40, 15, .14);
+  --shadow-soft: 0 8px 25px rgba(60, 40, 15, .08);
   --radius-xl: 28px;
   --radius-lg: 22px;
   --radius-md: 16px;
@@ -51,29 +51,29 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --canvas: #07111b;
-  --bg: #0d1924;
-  --surface: #142431;
-  --surface-2: #1b2d3a;
-  --surface-3: #293d4b;
-  --text: #eef5f7;
-  --muted: #a1b3bc;
-  --soft: #758a94;
-  --line: rgba(255, 255, 255, .08);
-  --line-strong: rgba(255, 255, 255, .14);
-  --accent: #397c8c;
-  --accent-strong: #8ed2de;
-  --accent-soft: #173843;
-  --green: #8eb9a9;
-  --green-soft: #1d3a34;
-  --blue: #99bdd4;
-  --blue-soft: #203747;
-  --rose: #d1a1af;
-  --rose-soft: #3c2932;
-  --violet: #b0acd3;
-  --violet-soft: #302f49;
-  --shadow: 0 24px 70px rgba(0, 8, 15, .44);
-  --shadow-soft: 0 10px 28px rgba(0, 8, 15, .25);
+  --canvas: #100d07;
+  --bg: #171009;
+  --surface: #241c12;
+  --surface-2: #2c2318;
+  --surface-3: #382c1d;
+  --text: #ece2d0;
+  --muted: #a2947a;
+  --soft: #897c63;
+  --line: rgba(240, 226, 194, .1);
+  --line-strong: rgba(240, 226, 194, .18);
+  --accent: #e8b563;
+  --accent-strong: #ecc078;
+  --accent-soft: #3a2e1e;
+  --green: #8fcbb0;
+  --green-soft: #1d3a2f;
+  --blue: #e8b563;
+  --blue-soft: #3a2e1e;
+  --rose: #ee8f8e;
+  --rose-soft: #4a2b25;
+  --violet: #b8a5da;
+  --violet-soft: #352a45;
+  --shadow: 0 24px 70px rgba(0, 0, 0, .48);
+  --shadow-soft: 0 10px 28px rgba(0, 0, 0, .28);
 }
 
 * {
@@ -121,8 +121,8 @@ textarea:focus-visible {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 88% -8%, color-mix(in srgb, var(--blue) 19%, transparent), transparent 26rem),
-    linear-gradient(145deg, color-mix(in srgb, var(--accent) 7%, transparent), transparent 48%);
+    radial-gradient(circle at 88% -8%, color-mix(in srgb, var(--accent) 19%, transparent), transparent 26rem),
+    linear-gradient(145deg, color-mix(in srgb, var(--green) 6%, transparent), transparent 48%);
 }
 
 .app {
@@ -131,7 +131,7 @@ textarea:focus-visible {
   min-height: 100dvh;
   margin-inline: auto;
   overflow: hidden;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--blue-soft) 66%, var(--bg)) 0, var(--bg) 250px);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent-soft) 66%, var(--bg)) 0, var(--bg) 250px);
   box-shadow: var(--shadow);
 }
 
@@ -167,7 +167,7 @@ textarea:focus-visible {
   width: 29px;
   height: 29px;
   border-radius: 10px 10px 10px 4px;
-  background: url("icon-v2.png") center / cover no-repeat;
+  background: url("icon-v3.png") center / cover no-repeat;
   box-shadow: 0 6px 14px color-mix(in srgb, var(--accent) 22%, transparent);
   transform: rotate(-5deg);
 }
@@ -1717,7 +1717,7 @@ body.auth-open {
   margin: 0 auto 16px;
   border: 0;
   border-radius: 23px 23px 23px 8px;
-  background: url("icon-v2.png") center / cover no-repeat;
+  background: url("icon-v3.png") center / cover no-repeat;
   box-shadow: 0 14px 28px color-mix(in srgb, var(--accent) 26%, transparent);
   transform: rotate(-5deg);
 }
